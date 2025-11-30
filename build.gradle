@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.smoothaotv'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Put your Forge dependency here for your version if you want,
+    // but for a simple example jar build, this can be left empty.
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Mod-Id': 'smoothaotv',
+                'Mod-Name': 'Smooth AOTV',
+                'Mod-Version': version
+        )
+    }
+}
