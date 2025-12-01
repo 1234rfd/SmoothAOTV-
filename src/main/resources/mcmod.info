@@ -1,0 +1,16 @@
+[
+ {
+  "modid": "smoothaotv",
+  "name": "Smooth AOTV",
+  "description": "Smooth AOTV travel animation",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["You"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+ }
+]
