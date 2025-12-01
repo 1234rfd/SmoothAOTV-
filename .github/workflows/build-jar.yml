@@ -1,4 +1,4 @@
-name: Build and upload jar
+name: Build Forge 1.8.9 mod
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Set up JDK 8
       uses: actions/setup-java@v4
@@ -18,14 +18,16 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Build with Gradle
+    - name: Use Gradle 4.10.3
       uses: gradle/gradle-build-action@v3
       with:
-        arguments: build
-        gradle-version: 8.10.2
+        gradle-version: 4.10.3
 
-    - name: Upload built jars
+    - name: Build mod with stacktrace
+      run: ./gradlew build --stacktrace
+
+    - name: Upload jars
       uses: actions/upload-artifact@v4
       with:
-        name: mod-jars
+        name: smoothaotv-jars
         path: build/libs/*.jar
