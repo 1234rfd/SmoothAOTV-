@@ -1,22 +1,23 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { name = "forge"; url = "https://files.minecraftforge.net/maven/" }
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven { name = "jitpack"; url = "https://jitpack.io" }
+        maven { url = 'https://jitpack.io' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.0"
-group= "com.smoothaotv.smoothaotv"
+group = "com.smoothaotv"
 archivesBaseName = "smoothaotv"
 
-sourceSets.main.output.resourcesDir = outputDir
-apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 minecraft {
     version = "1.8.9-11.15.1.2318"
@@ -24,22 +25,10 @@ minecraft {
     mappings = "stable_22"
 }
 
-dependencies {
-    // Specify Forge dependency
+repositories {
+    mavenCentral()
 }
 
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    // replace stuff in mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        expand 'version':project.version
-    }
-
-    into outputDir
+dependencies {
+    // Define dependencies here if needed
 }
