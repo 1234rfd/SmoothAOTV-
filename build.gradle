@@ -16,7 +16,6 @@ archivesBaseName = "smoothaotv"
 minecraft {
     version = "1.8.9-11.15.1.2318"
     runDir = "run"
-    coremods = "com.smoothaotv.smoothaotv.SmoothAOTV"
     mappings = "snapshot_20150610"
 }
 
