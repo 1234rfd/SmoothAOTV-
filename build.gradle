@@ -1,30 +1,45 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { name = "forge"; url = "https://files.minecraftforge.net/maven/" }
+        jcenter()
+        maven { name = "jitpack"; url = "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-group = 'com.example.smoothaotv'
-version = '1.0.0'
+version = "1.0"
+group= "com.smoothaotv.smoothaotv"
+archivesBaseName = "smoothaotv"
 
-repositories {
-    mavenCentral()
+sourceSets.main.output.resourcesDir = outputDir
+apply plugin: 'java'
+
+minecraft {
+    version = "1.8.9-11.15.1.2318"
+    runDir = "run"
+    mappings = "stable_22"
 }
 
 dependencies {
-    // Put your Forge dependency here for your version if you want,
-    // but for a simple example jar build, this can be left empty.
+    // Specify Forge dependency
 }
 
-tasks.withType(JavaCompile) {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-jar {
-    manifest {
-        attributes(
-                'Mod-Id': 'smoothaotv',
-                'Mod-Name': 'Smooth AOTV',
-                'Mod-Version': version
-        )
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
+
+    // replace stuff in mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'version':project.version
+    }
+
+    into outputDir
 }
