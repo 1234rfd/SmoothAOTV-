@@ -4,7 +4,7 @@ buildscript {
         maven { name = "forge"; url="https://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -16,8 +16,8 @@ archivesBaseName = "smoothaotv"
 minecraft {
     version = "1.8.9-11.15.1.2318"
     runDir = "run"
-    
-    mappings = "stable_22"
+    coremods = "com.smoothaotv.smoothaotv.SmoothAOTV"
+    mappings = "snapshot_20150610"
 }
 
 processResources {
@@ -25,25 +25,9 @@ processResources {
     inputs.property "mcversion", project.minecraft.version
 
     from(sourceSets.main.resources.srcDirs) {
-        expand 'version':project.version,'mcversion':project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        expand 'version':project.version
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-
-    // real examples
-    //compile 'net.minecraftforge:forge:1.7.10-10.13.4.1614:deobf'
-    //compile 'net.minecraftforge:mcmods:forge:1.7.10-10.13.4.1614:deobf'
-    
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
